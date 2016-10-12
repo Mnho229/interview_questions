@@ -1,3 +1,4 @@
+//Find pairs in an integer array whose sum is equal to 10 (bonus: do it in linear time)
 //without extreme cases
 function checkSum10(num_array) {
     var map_freq = {};
