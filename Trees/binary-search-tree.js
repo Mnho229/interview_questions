@@ -210,6 +210,53 @@ BST.prototype.remove = function(value) {
 
 }
 
+//--------------------------------Searching----------------------------------\\
+
+//Breadth-First Search
+function BFS(root_node)
+{
+  var queue = [];
+  
+  queue.push(root_node);
+  
+  while(queue.length)
+  {
+    var buffer = queue.shift();
+    
+    console.log(buffer.value);
+    
+    if (buffer.left)
+    {
+      queue.push(buffer.left);
+    }
+    
+    if (buffer.right)
+    {
+      queue.push(buffer.right);
+    }
+  }
+}
+
+//Depth-First Search
+function DFS(node) {
+  if (node === null)
+  {
+    return;
+  }
+
+  console.log(node.value);
+  BFS(node.left);
+  BFS(node.right);
+}
+
+//---------------------------Identification----------------------------------\\
+
+//Is this a BST?
+function checkBST()
+{
+  
+}
+
 //----------------------------------Testing----------------------------------\\
 
 var my_BST = new BST();
@@ -223,12 +270,9 @@ my_BST.insert(80);
 my_BST.insert(10);
 my_BST.insert(30);
 my_BST.insert(65);
-my_BST.remove(50);
-my_BST.insert(50);
-my_BST.insert(56);
-my_BST.remove(100);
-my_BST.remove(56);
-my_BST.insert(56);
+
+BFS(my_BST.root);
+
 
   
   
