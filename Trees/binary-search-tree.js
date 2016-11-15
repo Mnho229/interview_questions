@@ -249,11 +249,42 @@ function DFS(node) {
   BFS(node.right);
 }
 
+//Minimum Element in BST
+function minValueBST(node)
+{
+  if (!node) { return 0; }
+  if (!node.left)
+  {
+    return node.value;
+  }
+  else
+  {
+    return minValueBST(node.left);
+  }
+}
+
+//kth largest element in BST
+function kthLargestValueBST()
+{
+  
+}
+
 //---------------------------Identification----------------------------------\\
 
 //Is this a BST?
-function checkBST()
+function checkBST(node, low, high)
 {
+  if (!node) { return true; }
+  //console.log("Check: " + node.value + " low: " + low + " high: " + high);
+  if (node.value > low && node.value < high)
+  {
+    return checkBST(node.left, low, node.value) && 
+           checkBST(node.right, node.value, high);
+  }
+  else
+  {
+    return false;
+  }
   
 }
 
@@ -271,10 +302,7 @@ my_BST.insert(10);
 my_BST.insert(30);
 my_BST.insert(65);
 
-BFS(my_BST.root);
 
-
-  
   
   
   
