@@ -245,8 +245,8 @@ function DFS(node) {
   }
 
   console.log(node.value);
-  BFS(node.left);
-  BFS(node.right);
+  DFS(node.left);
+  DFS(node.right);
 }
 
 //Minimum Element in BST
@@ -263,10 +263,26 @@ function minValueBST(node)
   }
 }
 
-//kth largest element in BST
-function kthLargestValueBST()
+//nth largest element in BST
+//function should be called with just node and nth filled in, ignore node_array
+function nthLargestValueBST(node, nth, node_array)
 {
+  if (node_array === undefined) { node_array = []; }
+  if (typeof nth !== "number") { return "nth is not a number"; }
+  if (!node) {return;}
   
+  nthLargestValueBST(node.right, nth, node_array);
+  node_array.push(node.value);
+  nthLargestValueBST(node.left, nth, node_array);
+  
+  if (node_array[nth-1])
+  {
+    return node_array[nth-1];
+  }
+  else
+  {
+    return "nth is not within the range of the Tree"
+  }
 }
 
 //---------------------------Identification----------------------------------\\
@@ -302,6 +318,7 @@ my_BST.insert(10);
 my_BST.insert(30);
 my_BST.insert(65);
 
+console.log( nthLargestValueBST(my_BST.root, 4) ); 
 
   
   
